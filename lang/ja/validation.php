@@ -162,7 +162,9 @@ return [
         'event_date' => 'イベントの日付',
         'start_time' => '開始時間',
         'end_time' => '終了時間',
-        'max_people' => '定員'
+        'max_people' => '定員',
+        'title' => '件名',
+        'content' => '本文'
     ],
 
 ];
