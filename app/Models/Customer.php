@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use app\Models\Purchase;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,14 +12,14 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'kana', 
-        'tel', 
-        'email', 
-        'postcode', 
-        'address', 
-        'birthday', 
-        'gender', 
+        'name',
+        'kana',
+        'tel',
+        'email',
+        'postcode',
+        'address',
+        'birthday',
+        'gender',
         'memo'
     ];
     public function scopeSearchCustomers($query, $input = null)
@@ -30,5 +32,10 @@ class Customer extends Model
                     ->orWhere('tel', 'like', $input . '%');
             }
         }
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
     }
 }
