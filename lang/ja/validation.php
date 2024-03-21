@@ -154,7 +154,7 @@ return [
     */
 
     'attributes' => [
-        'name' => '名前',
+        'name' => '名',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'event_name' => 'イベント名',
@@ -164,7 +164,9 @@ return [
         'end_time' => '終了時間',
         'max_people' => '定員',
         'title' => '件名',
-        'content' => '本文'
+        'content' => '本文',
+        'memo' => 'メモ',
+        'price' => '価格'
     ],
 
 ];
