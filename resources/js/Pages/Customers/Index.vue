@@ -64,9 +64,9 @@ const searchCustomers = () => {
                     <tbody>
                       <tr v-for="customer in customers.data" :key="customer.id">
                         <td class="border-t-2 border-gray-200 px-4 py-3">
-                          <!-- <Link class="text-blue-400" :href="route('items.show', { item: item.id })"> -->
+                          <Link class="text-blue-400" :href="route('customers.show', { customer: customer.id })">
                           {{ customer.id }}
-                          <!-- </Link> -->
+                          </Link>
                         </td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{ customer.name }}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{ customer.kana }}</td>

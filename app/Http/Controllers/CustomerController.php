@@ -16,12 +16,12 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = Customer::searchCustomers($request->search)
-        ->select('id','name','kana','tel')
-        ->paginate(50);
+            ->select('id', 'name', 'kana', 'tel')
+            ->paginate(50);
 
         // dd($customers);
 
-        return Inertia::render('Customers/Index',[
+        return Inertia::render('Customers/Index', [
             'customers' => $customers
         ]);
     }
@@ -51,11 +51,11 @@ class CustomerController extends Controller
             'birthday' => $request->birthday,
             'gender' => $request->gender,
             'memo' => $request->memo,
-            ]);
-            return to_route('customers.index')
+        ]);
+        return to_route('customers.index')
             ->with([
-            'message' => '登録しました。',
-            'status' => 'success'
+                'message' => '登録しました。',
+                'status' => 'success'
             ]);
     }
 
@@ -64,7 +64,13 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        // dd($customer);
+        return Inertia::render(
+            'Customers/Show',
+            [
+                'customer' => $customer
+            ]
+        );
     }
 
     /**
@@ -72,7 +78,12 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return Inertia::render(
+            'Customers/Edit',
+            [
+                'customer' => $customer
+            ]
+        );
     }
 
     /**
@@ -80,7 +91,21 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->name = $request->name;
+        $customer->kana = $request->kana;
+        $customer->tel = $request->tel;
+        $customer->email = $request->email;
+        $customer->postcode = $request->postcode;
+        $customer->address = $request->address;
+        $customer->birthday = $request->birthday;
+        $customer->gender = $request->gender;
+        $customer->memo = $request->memo;
+        $customer->save();
+        return to_route('customers.index')
+            ->with([
+                'message' => '更新しました。',
+                'status' => 'success'
+            ]);
     }
 
     /**
@@ -88,6 +113,12 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+
+        return to_route('customers.index')
+            ->with([
+                'message' => '削除しました。',
+                'status' => 'danger'
+            ]);
     }
 }
